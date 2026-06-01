@@ -1,0 +1,4 @@
+v 4
+file . "counter8.vhdl" "51cf434a5c01180db6d650648a14b80c20f1c010" "20260601142338.409":
+  entity counter8 at 1( 0) + 0 on 11;
+  architecture rtl of counter8 at 12( 202) + 0 on 12;

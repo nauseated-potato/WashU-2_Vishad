@@ -1,0 +1,82 @@
+$date
+  Thu May 28 16:51:54 2026
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module gates $end
+$upscope $end
+$scope module tb_half_adder $end
+$var reg 1 ! a $end
+$var reg 1 " b $end
+$var reg 1 # sum $end
+$var reg 1 $ carry $end
+$scope module uut $end
+$var reg 1 % a $end
+$var reg 1 & b $end
+$var reg 1 ' sum $end
+$var reg 1 ( carry $end
+$scope module add $end
+$var reg 1 ) a $end
+$var reg 1 * b $end
+$var reg 1 + y $end
+$upscope $end
+$scope module oth $end
+$var reg 1 , a $end
+$var reg 1 - b $end
+$var reg 1 . y $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+0!
+0"
+0#
+0$
+0%
+0&
+0'
+0(
+0)
+0*
+0+
+0,
+0-
+0.
+#10000000
+1"
+1#
+1&
+1'
+1*
+1+
+1-
+#20000000
+1!
+0"
+1%
+0&
+1)
+0*
+1,
+0-
+#30000000
+1"
+0#
+1$
+1&
+0'
+1(
+1*
+0+
+1-
+1.
+#40000000

@@ -1,0 +1,25 @@
+v 4
+file . "tb_mux2_en.vhd" "7a21699a100d89536344cd8d8a76aad7c9e0359a" "20260530124304.201":
+  entity tb_mux2_en at 10( 321) + 0 on 30;
+  architecture sim of tb_mux2_en at 16( 403) + 0 on 31;
+file . "mux2_en.vhdl" "473fdaaf9c423fb40114bbb7c901b0bde6fd97a2" "20260530124304.200":
+  entity mux2_en at 1( 0) + 0 on 28;
+  architecture switch of mux2_en at 12( 171) + 0 on 29;
+file . "Gates.vhdl" "1644ced1b74273f448c6aea8c33f25f573c94ab4" "20260530124304.199":
+  package gates at 2( 1) + 0 on 11;
+  entity inverter at 77( 1514) + 0 on 12;
+  architecture rtl of inverter at 87( 1669) + 0 on 13;
+  entity and_gate at 98( 1850) + 0 on 14;
+  architecture rtl of and_gate at 109( 2031) + 0 on 15;
+  entity nand_gate at 120( 2215) + 0 on 16;
+  architecture rtl of nand_gate at 131( 2398) + 0 on 17;
+  entity or_gate at 142( 2587) + 0 on 18;
+  architecture rtl of or_gate at 153( 2766) + 0 on 19;
+  entity nor_gate at 164( 2947) + 0 on 20;
+  architecture rtl of nor_gate at 175( 3128) + 0 on 21;
+  entity xor_gate at 186( 3316) + 0 on 22;
+  architecture rtl of xor_gate at 197( 3497) + 0 on 23;
+  entity xnor_gate at 208( 3681) + 0 on 24;
+  architecture rtl of xnor_gate at 219( 3864) + 0 on 25;
+  entity half_adder at 230( 4056) + 0 on 26;
+  architecture rtl of half_adder at 242( 4284) + 0 on 27;

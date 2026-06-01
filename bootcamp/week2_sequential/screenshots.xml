@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<indexing>
+ <object alt="" name="Image1" object_type="graphic"/>
+ <object alt="" name="Image2" object_type="graphic"/>
+ <object alt="" name="Image3" object_type="graphic"/>
+ <object alt="" name="Image4" object_type="graphic"/>
+ <object alt="" name="Image5" object_type="graphic"/>
+ <object alt="" name="Image6" object_type="graphic"/>
+ <object alt="" name="Image7" object_type="graphic"/>
+ <paragraph index="30" node_type="writer">COUNTER</paragraph>
+ <paragraph index="31" node_type="writer">WAVEFORM</paragraph>
+ <paragraph index="32" node_type="writer">RTL</paragraph>
+ <paragraph index="35" node_type="writer">MOD_COUNTER</paragraph>
+ <paragraph index="36" node_type="writer">WAVEFORM</paragraph>
+ <paragraph index="37" node_type="writer">PS: I did multiple tests, it is too long to visibly fit in one prtsc. Please find the 4 screenshots</paragraph>
+ <paragraph index="38" node_type="writer">1.</paragraph>
+ <paragraph index="39" node_type="writer">2.</paragraph>
+ <paragraph index="40" node_type="writer">3.</paragraph>
+ <paragraph index="41" node_type="writer">4.</paragraph>
+ <paragraph index="42" node_type="writer">PS: on RHS of = in the time column are values at t=0fs, not those at start of current range</paragraph>
+ <paragraph index="44" node_type="writer">RTL</paragraph>
+</indexing>

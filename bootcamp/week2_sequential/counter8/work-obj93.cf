@@ -1,0 +1,7 @@
+v 4
+file . "counter8.vhd" "96aa050c4e60b2d491a0b36ed3d98f422708d882" "20260601153128.473":
+  entity counter8 at 1( 0) + 0 on 23;
+  architecture count of counter8 at 10( 195) + 0 on 24;
+file . "tb_counter8.vhd" "4423540c628e50600d8a685207e94b4bbf95e8d3" "20260601153128.474":
+  entity tb_counter8 at 23( 699) + 0 on 25;
+  architecture sim of tb_counter8 at 30( 816) + 0 on 26;

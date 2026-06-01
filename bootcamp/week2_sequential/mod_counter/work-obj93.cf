@@ -1,0 +1,7 @@
+v 4
+file . "mod_counter.vhd" "3095d946ab5c639ae354d33816f9aebb02c7b213" "20260601161518.237":
+  entity mod_counter at 1( 0) + 0 on 23;
+  architecture lallaa of mod_counter at 12( 243) + 0 on 24;
+file . "tb_mod_counter.vhd" "96576d454d1a105b609b7960b539cfb3321de2d1" "20260601161518.237":
+  entity tb_mod_counter at 3( 66) + 0 on 25;
+  architecture sim of tb_mod_counter at 9( 156) + 0 on 26;
