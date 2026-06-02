@@ -49,7 +49,7 @@ together into a complete, simulated processor.
 | Instruction size | 16 bits (4-bit opcode + 12-bit operand) |
 | Instruction set | 14 instructions |
 | Duration | 8 weeks |
-| Format | Individual project |
+| Format | Individual project (forked repository) |
 | Language | VHDL (design + testbench) |
 
 **Learning outcomes**
@@ -133,63 +133,107 @@ everything it can handle; no separate or additional tools are needed.
 
 ## 4. Repository & Submission Structure
 
-Maintain **one repository** for the project. Keep the bootcamp work and the
-final CPU cleanly separated so that progress is easy to track and review.
+**Fork** the project repository to your own GitHub/GitLab account. All work
+is committed to your fork. Keep bootcamp weeks and the final CPU cleanly
+separated so that progress is easy to track and review.
 
 ```
-washu2-cpu-<your-name>/
+washu2-cpu-<your-name>/             ← your fork
 │
-├── README.md                      # Your info, build/run instructions
+├── README.md                       # Your info, build/run instructions
 │
-├── bootcamp/                      # Weeks 1–5: VHDL learning artifacts
-│   ├── week1-basics/
-│   │   ├── and_gate.vhd
-│   │   ├── mux4to1.vhd
-│   │   ├── half_adder.vhd
-│   │   └── tb_*.vhd
-│   ├── week2-sequential/
-│   │   ├── dff.vhd
-│   │   ├── register.vhd
-│   │   ├── counter8.vhd
-│   │   └── tb_*.vhd
-│   ├── week3-fsm/
-│   │   ├── traffic_light.vhd
-│   │   ├── seq_detector.vhd
-│   │   └── tb_*.vhd
-│   ├── week4-alu-memory/
-│   │   ├── alu4.vhd
-│   │   ├── ram16x8.vhd
-│   │   └── tb_*.vhd
-│   └── week5-datapath/
-│       ├── mini_datapath.vhd
-│       └── tb_mini_datapath.vhd
+├── bootcamp/                       # Weeks 1–5: VHDL learning artifacts
+│   │
+│   ├── week1/
+│   │   ├── exercise_1/             # One folder per exercise (names assigned each week)
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   ├── exercise_2/
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   ├── exercise_3/
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   └── week1_report.pdf        # RTL netlists + simulation waveforms for all Week 1 exercises
+│   │
+│   ├── week2/
+│   │   ├── exercise_1/
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   ├── exercise_2/
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   ├── exercise_3/
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   └── week2_report.pdf        # RTL netlists + simulation waveforms for all Week 2 exercises
+│   │
+│   ├── week3/
+│   │   ├── exercise_1/
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   ├── exercise_2/
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   ├── exercise_optional/       # Optional — include if attempted
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   └── week3_report.pdf        # RTL netlists + simulation waveforms for all Week 3 exercises
+│   │
+│   ├── week4/
+│   │   ├── exercise_1/
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   ├── exercise_2/
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   ├── exercise_optional/
+│   │   │   ├── <design>.vhd
+│   │   │   └── tb_<design>.vhd
+│   │   └── week4_report.pdf        # RTL netlists + simulation waveforms for all Week 4 exercises
+│   │
+│   └── week5/
+│       ├── exercise_1/
+│       │   ├── <design>.vhd
+│       │   └── tb_<design>.vhd
+│       └── week5_report.pdf        # RTL netlists + simulation waveforms for Week 5
 │
-├── architecture-study/            # Week 6: pen-and-paper deliverables
-│   ├── instruction_trace.pdf      # 5-instruction cycle-by-cycle walkthrough
-│   └── fsm_state_diagram.pdf      # Hand-drawn 17-state diagram
+├── architecture-study/             # Week 6: pen-and-paper deliverables
+│   ├── instruction_trace.pdf       # 5-instruction cycle-by-cycle walkthrough
+│   └── fsm_state_diagram.pdf       # Hand-drawn 17-state diagram
 │
-├── cpu/                           # Weeks 7–8: the final CPU (from scratch)
-│   ├── cpu_design.vhd             # Complete WashU-2 CPU
-│   ├── cpu_tb.vhd                 # Complete testbench + test program
-│   └── quartus/                   # Quartus project files (.qpf, .qsf)
-│
-├── waveforms/                     # Waveform screenshots as evidence
-│   ├── mid_submission/
-│   └── end_submission/
+├── cpu/                            # Weeks 7–8: the final CPU (from scratch)
+│   ├── cpu_design.vhd              # Complete WashU-2 CPU
+│   ├── cpu_tb.vhd                  # Complete testbench + test program
+│   └── quartus/                    # Quartus project files (.qpf, .qsf)
 │
 ├── docs/
-│   ├── mid_report.pdf             # Week 4 write-up
-│   └── final_report.pdf           # Week 8 report (architecture, design, results)
+│   └── final_report.pdf            # Week 8 report (architecture, design, results)
 │
-└── .gitignore                     # Ignore Quartus build/output artifacts
+└── .gitignore                      # Ignore Quartus build/output artifacts
 ```
+
+### Weekly report PDF
+
+Each week's folder contains **one PDF** (`weekN_report.pdf`) covering all
+exercises for that week. The PDF must include, for every exercise:
+
+- The **RTL netlist** view (from Quartus RTL Viewer) showing the synthesised
+  logic for your design.
+- The **simulation waveform** screenshot (from ModelSim) with all relevant
+  signals labelled and at least the required number of cycles visible.
+- A brief note (2–3 sentences) on any bugs you encountered and how you
+  resolved them.
+
+Compile all exercises for a given week into a single PDF before submitting —
+do not submit separate PDFs per exercise.
 
 ### Submission policy
 
 | Submission | When | What goes in |
 |---|---|---|
-| **Mid submission** | End of Week 4 | `bootcamp/` (weeks 1–4), `waveforms/mid_submission/`, `docs/mid_report.pdf` |
-| **End submission** | End of Week 8 | Complete `cpu/`, `waveforms/end_submission/`, `docs/final_report.pdf`, full repo zipped |
+| **Mid submission** | End of Week 4 | `bootcamp/week1/` through `bootcamp/week4/`, each with per-exercise folders and `weekN_report.pdf` |
+| **End submission** | End of Week 8 | Complete `bootcamp/week5/`, `architecture-study/`, `cpu/`, `docs/final_report.pdf`, full fork zipped |
 
 Commit regularly with meaningful messages. The commit history is itself
 evidence that the work was done incrementally and by hand.
@@ -349,8 +393,7 @@ resources are provided separately each week** to support that week's material.
 - **No AI-generated code.** All VHDL must be written by hand. You must be able
   to explain every line of your code. This is non-negotiable and is the single
   most important rule of the project.
-- **This is an individual project.** Do your own work; sharing code with others
-  is not allowed.
+- **This is an individual project.** Fork the repository to your own account and do your own work. Sharing code with others is not allowed.
 - **Understand before you code.** Especially Week 6 — do not start the CPU
   until you can trace instructions on paper.
 - **Comment your code.** Brief, meaningful comments explaining your logic.
