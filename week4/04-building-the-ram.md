@@ -9,7 +9,7 @@ together with the ALU and the FSM from Week 3.
 
 ## 1. Full specification
 
-```
+```vhdl
 entity ram16x8 is
     port (
         clk      : in    std_logic;
@@ -34,7 +34,7 @@ end ram16x8;
 The `inout` port mode means the port can be driven by the entity itself
 *or* by something external. This creates a bus:
 
-```
+```text
 External driver (CPU/testbench) ─────┐
                                      ├──── data_bus ──── RAM internal storage
 RAM output driver ───────────────────┘
@@ -90,10 +90,6 @@ architecture rtl of ram16x8 is
     -- Holds the last read value; driven onto data_bus when we='0'.
     signal data_out_reg : std_logic_vector(7 downto 0) := (others => '0');
 
-    -- Internal flag: are we in read mode this cycle?
-    -- Needed to decide whether to drive the bus or tri-state it.
-    signal read_active : std_logic := '0';
-
 begin
 
     -- =================================================================
@@ -104,23 +100,20 @@ begin
         if rising_edge(clk) then
             if we = '1' then
                 -- WRITE: store data_bus into addressed location.
-                -- RAM does not drive the bus during a write (data is incoming).
                 ram_mem(to_integer(unsigned(addr))) <= data_bus;
-                read_active <= '0';
             else
                 -- READ: capture addressed location into output register.
                 data_out_reg <= ram_mem(to_integer(unsigned(addr)));
-                read_active  <= '1';
             end if;
         end if;
     end process mem_proc;
 
     -- =================================================================
     -- Bidirectional bus driver
-    -- Drive data_out_reg onto the bus when read_active='1'.
-    -- Drive 'Z' when writing (bus is owned by the external driver).
+    -- Drive data_out_reg onto the bus when reading (we='0').
+    -- Drive 'Z' immediately when writing to avoid bus contention.
     -- =================================================================
-    data_bus <= data_out_reg when read_active = '1' else (others => 'Z');
+    data_bus <= data_out_reg when we = '0' else (others => 'Z');
 
 end rtl;
 ```
@@ -150,24 +143,19 @@ Array indices in VHDL must be `integer` (or a type with natural range).
 Do not skip the `unsigned` step: `to_integer` cannot accept
 `std_logic_vector` directly.
 
-### The `read_active` flag
+### Controlling the bidirectional bus
 
 The concurrent bus-driver statement needs to know whether to drive the bus
-or tri-state it. Using a registered `read_active` flag (updated in the same
-process as the memory) ensures the bus driver changes in sync with the data
-output register — both update one cycle after the read is requested.
-
-An alternative is to derive the drive condition from `we` directly:
+or tri-state it. We derive the drive condition from `we` directly:
 
 ```vhdl
 data_bus <= data_out_reg when we = '0' else (others => 'Z');
 ```
 
-This is simpler, but it changes the bus state *immediately* when `we`
-changes (combinationally), which can cause a brief glitch between when `we`
-changes and when the data register catches up. The `read_active` flag avoids
-this. Use whichever your implementation is comfortable with, but understand
-the difference.
+This ensures that the moment a write cycle begins (`we = '1'`), the RAM 
+immediately releases the bus (tri-states to `'Z'`). This prevents **bus contention**—a
+situation where the external CPU and the RAM try to drive the bus at the
+same time during consecutive read-to-write transitions. 
 
 ---
 
@@ -175,22 +163,20 @@ the difference.
 
 The registered read introduces a **one-cycle latency**. Here is the timing:
 
-```
+```text
 Cycle:       1       2       3       4       5
 clk:    ____/‾‾‾‾\___/‾‾‾‾\___/‾‾‾‾\___/‾‾‾‾\___
 we:          1       1       0       0
 addr:        0       1       0       1
-data_bus:  0xAB    0xCD      Z     [0xAB] [0xCD]
+data_bus:  0xAB    0xCD    Stale   [0xAB] [0xCD]
                              ↑       ↑
                           read req  output appears (1 cycle later)
 ```
 
 - Cycles 1–2: writes. `we='1'`. The testbench drives data onto the bus;
-  the RAM stores it. `read_active='0'` so the RAM outputs `'Z'` (bus free).
-- Cycle 3: read address 0. `we='0'`. Bus is `'Z'` (RAM has not driven it
-  yet — the data will appear on cycle 4).
-- Cycle 4: `data_out_reg` now holds `0xAB` (captured on cycle 3's edge).
-  `read_active='1'`, so RAM drives `0xAB` onto the bus.
+  the RAM stores it. RAM outputs `'Z'` (bus free).
+- Cycle 3: read address 0. `we='0'`. The RAM begins driving the bus with whatever old data is in `data_out_reg` (stale data). 
+- Cycle 4: `data_out_reg` now holds `0xAB` (captured on cycle 3's edge). The RAM drives the valid `0xAB` onto the bus.
 - Cycle 5: read address 1. Same pattern — `0xCD` appears on cycle 6.
 
 **This one-cycle read latency is by design.** It matches how the WashU-2
@@ -237,13 +223,13 @@ The testbench must tri-state the bus when reading:
 
 ```vhdl
 -- CORRECT in testbench: release the bus for reads
-data_bus <= (others => 'Z') when we = '0' else cpu_data_out;
+data_bus <= tb_data when we = '1' else (others => 'Z');
 ```
 
 **Mistake 2: Reading `data_bus` before the latency expires**
 
 Checking `data_bus` on the same clock edge as the read request will give
-`'Z'` or stale data. Always check one cycle after the read request.
+stale data. Always check one cycle after the read request.
 
 **Mistake 3: Using `addr` directly as an array index**
 
