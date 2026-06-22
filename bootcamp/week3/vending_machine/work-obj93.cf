@@ -1,0 +1,7 @@
+v 4
+file . "vending_machine.vhd" "8ff7b7b8f7b602f802b7eb49f0329a2a0532e102" "20260602113726.772":
+  entity vending_machine at 1( 0) + 0 on 23;
+  architecture fsm of vending_machine at 15( 445) + 0 on 24;
+file . "tb_vending_machine.vhd" "50ace54b890450620b24c45e88a93e2edcb1abf5" "20260602113726.773":
+  entity tb_vending_machine at 14( 527) + 0 on 25;
+  architecture sim of tb_vending_machine at 20( 625) + 0 on 26;
