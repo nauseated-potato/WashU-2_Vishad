@@ -1,0 +1,13 @@
+v 4
+file . "alu8.vhd" "52575ff339eeaa330aad235957f499ecf78a9135" "20260721153620.233":
+  entity alu8 at 17( 550) + 0 on 35;
+  architecture rtl of alu8 at 31( 899) + 0 on 36;
+file . "ram32x8.vhd" "a0c8006eb1878ebf051ac0bf92885975fbcf97f2" "20260721153620.233":
+  entity ram32x8 at 20( 751) + 0 on 37;
+  architecture rtl of ram32x8 at 34( 1052) + 0 on 38;
+file . "mini_cpu.vhd" "3d2f504b22b16898503773f8754a74416cc982b0" "20260721153620.234":
+  entity mini_cpu at 1( 0) + 0 on 39;
+  architecture rtl of mini_cpu at 17( 378) + 0 on 40;
+file . "tb_mini_cpu_ex1.vhd" "f799943a3fa21fca4520ea852a78e8989125501b" "20260721153620.234":
+  entity tb_mini_cpu_ex1 at 16( 511) + 0 on 41;
+  architecture sim of tb_mini_cpu_ex1 at 24( 681) + 0 on 42;

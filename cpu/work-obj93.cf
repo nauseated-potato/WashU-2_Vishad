@@ -1,0 +1,10 @@
+v 4
+file . "washu2_ram.vhd" "232a56767148ed8f493691accfa34ea2ab78dc22" "20260723160818.193":
+  entity washu2_ram at 45( 1912) + 0 on 125;
+  architecture rtl of washu2_ram at 59( 2267) + 0 on 126;
+file . "washu2_cpu.vhd" "8c71557afbdf3282c3ac360b59c565d854a617f6" "20260723160818.194":
+  entity washu2_cpu at 1( 0) + 0 on 127;
+  architecture rtl of washu2_cpu at 13( 192) + 0 on 128;
+file . "tb_generic_prog.vhd" "629521e91c30920b5c276054b9efd05a06bdcd12" "20260723160818.195":
+  entity tb_generic_prog at 5( 71) + 0 on 129;
+  architecture sim of tb_generic_prog at 11( 163) + 0 on 130;
